@@ -6,7 +6,8 @@ const Facture = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [productList, setProductList] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState({ productName: '', productPrice: 0 });
-
+  const [clientList, setClientList] = useState([]);
+  const [selectedClientId, setSelectedClientId] = useState('');
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await axios.get('http://localhost:3000/getProducts');
@@ -15,6 +16,19 @@ const Facture = () => {
     };
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    const fetchClients = async () => {
+      const response = await axios.get('http://localhost:3000/getClients/641d833d392df9f58456d53a');
+      setClientList(response.data);
+      console.log(clientList);
+    };
+    fetchClients();
+  }, []);
+
+  const handleClientChange = (event) => {
+    setSelectedClientId(event.target.value);
+  };
 
   const handleItemChange = (index, event) => {
     const newItems = [...items];
@@ -43,7 +57,7 @@ const Facture = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/newBill/6442e9926e209eac28f7add5', { items, totalPrice });
+      const response = await axios.post(`http://localhost:3000/newBill/${selectedClientId}`, { items, totalPrice });
       console.log(response.data);
      
     } catch (error) {
@@ -54,6 +68,15 @@ const Facture = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+        <label>
+            Client:
+            <select value={selectedClientId} onChange={handleClientChange}>
+                <option value="">choisir le client</option>
+                {clientList.map((client)=>(
+                    <option key={client._id} value={client._id}>{client.email}</option>
+                ))}
+            </select>
+        </label>
       {items.map((item, index) => (
         <div key={index}>
           <label>
