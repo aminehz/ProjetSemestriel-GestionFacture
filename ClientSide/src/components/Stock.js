@@ -2,6 +2,9 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import {IoIosAddCircle} from "react-icons/io";
+import {BsFillTrashFill} from "react-icons/bs";
+import {GrUpdate} from "react-icons/gr";
 
 const Stock= () =>{
 const [stock,setStock]=useState([]);
@@ -77,41 +80,59 @@ const updateProduct=(e) => {
 }
 
 return (
-    <div className="stock">
-        <button type='button' className='btn btn-secondary' onClick={handleShow}  id='addProductBtn' ><div className='w-100'>Add Product</div></button>
-        <table className=" container mt-3 table table-bordered border-dark" id="stockTable">
-            <thead className="table-secondary">
-                <tr>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Product Quantity</th>
-                    <th scope="col">Product Price</th>
-                    <th scope="col">Action</th>
-                </tr>
+    <div className="">
+      <div className='card stockCard'>
+      
+        <div className='card-header bg-dark text-white stockCard'>
+          Product List
+        </div>
+        <div className='card-body '>
+          <table className='table'>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+               
+                <th>Product Quantity</th>
+                <th>Product Price</th>
+                <th>Action</th>
+                <th><button type='button' className='btn bg-transparent ' onClick={handleShow}><IoIosAddCircle style={{width:'50px',height:'35px'}}/></button></th>
+              </tr>
             </thead>
             <tbody>
-                {stock.map((product)=>(
-                    <tr>
-                    <th scope="row">{product.productName}</th>
-                    <th scope="row">{product.productQuantity}</th>
-                    <th scope="row">{product.productPrice}</th>
-
-                    <th scope='row'>
-                          
-                          <button type="submit" class="btn btn-outline-success m-2" onClick={() => {handleShowUpdate();setProduct(product._id);setProductName(product.productName);setProductPrice(product.productPrice);setProductQuantity(product.productQuantity)}}>Update</button>
-                         
-                          
+                    {stock.map((product)=>(
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div
+                              class="d-flex flex-column justify-content-center"
+                            >
+                              <h6 class="mb-0 text-sm">{product.productName}</h6>
+                              
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">{product.productQuantity}</p>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <p>{product.productPrice}</p>
+                        </td>
+                        <td class="align-middle d-flex justify-content-center align-item-center">
+                        <button type="submit" class="btn bg-transparent" onClick={() => {handleShowUpdate();setProduct(product._id);setProductName(product.productName);setProductPrice(product.productPrice);setProductQuantity(product.productQuantity)}}><GrUpdate className='StockIcon'/></button>
                         <form onSubmit={deleteProduct}>    
-                        <button type="button" class="btn btn-outline-danger m-2" onClick={(e) => deleteProduct(product._id,e)} >Delete</button>
-                        </form>
-                        
-                    </th>
-                </tr>
-                ))}
-                
-            </tbody>
-        </table>
+                         <button type="button" class="btn bg-transparent" onClick={(e) => deleteProduct(product._id,e)} ><BsFillTrashFill className='StockIcon'/></button>
+                         </form>
+                        </td>
+                      </tr>
+                    ))}
+                    </tbody>
+          </table>
+        </div>
+      </div>
 
-        <Modal show={showUpdate} onHide={handleCloseUpdate} animation={false}>
+
+
+      <Modal show={showUpdate} onHide={handleCloseUpdate} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Update Product</Modal.Title>
         </Modal.Header>
@@ -129,14 +150,14 @@ return (
            <label>Product Quantity</label>
            <input type="text" className='form-control' id="productQuantity" placeholder='Product Quantity' value={productQuantity} onChange={(e) => setProductQuantity(e.target.value)} />
        </div>
-   
+
    </form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseUpdate}>
             Close
           </Button>
-          <Button type='submit' variant="success" onClick={updateProduct}>
+          <Button type='submit' variant="success"  onClick={updateProduct}>
             Update
           </Button>
         </Modal.Footer>

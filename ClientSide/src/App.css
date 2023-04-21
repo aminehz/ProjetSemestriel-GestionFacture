@@ -4,9 +4,10 @@
 .footer{
   background-color: black;
   color: whitesmoke;
-  height:100px;
-position: relative;
-
+  margin-top: 28%;
+  height: 8.6%;
+  width: 118.4%;
+  margin-left: -6%;
 }
 #copyright{
   margin-left: 40%;
@@ -17,8 +18,20 @@ position: relative;
   height: 100%;
 }
 .stock{
-  background-color: bisque;
+  background-color: rgba(253, 253, 253, 0.24);
   background-size: cover;
+  margin-top: -800px;
+  width: 1000px !important;
+  margin-left: 20% !important;
+}
+.StockTitle{
+  margin-left: 50px !important;
+  margin-top: 100px !important;
+  z-index: 9999 !important;
+}
+#stockTable{
+  margin-left: 20%;
+  
 }
 #addProductBtn{
   width: 8%;
@@ -28,4 +41,47 @@ position: relative;
 #addBtn{
   margin-left: 40%;
   margin-top: 3%;
+}
+.signInCard{
+  width: 417px;
+  
+}
+.SignInTitle{
+  height: 80px;
+  
+}
+.TitleCard{
+  width: 384px;
+  margin-top: 460px !important;
+  z-index: 9999;
+  background-color: rgb(13,110,253) !important;
+  color: white;
+}
+.bouttonSignIn{
+  width: 366px;
+}
+.usernameInput{
+  margin-top: 60px;
+}
+.SignInInterface{
+  background-image: url('../src/img/background.avif');
+}
+.NavIcon{
+  width: 30px;
+  height: 25px;
+}
+.navList{
+  margin-top: 5%;
+  margin-left: -20%;
+}
+.stockCard{
+  border-radius: 3% !important; 
+}
+.navPosition{
+  margin-left: -5.5% !important;
+  height: 100% !important;
+}
+.StockIcon{
+  width: 60px;
+  height: 20px;
 }

@@ -38,26 +38,37 @@ res.status(204).end();
 };
 
 
-module.exports.createBill= async(req,res) =>{
-    try{
-        const {clientId} = req.params;
-        const{itemDescription,itemQuantity,itemPrice,totalPrice} = req.body;
-        const client= await Client.findById(clientId);
-        const newBill = new Bill({
-            itemDescription,
-            itemQuantity,
-            itemPrice,
-            totalPrice,
-            client: client._id
-        });
-        client.bills.push(newBill);
-        await Promise.all([newBill.save(), client.save()]);
-        res.status(201).json(newBill);
-    }catch(error){
-        console.error(error);
-        res.status(500).json({message:'Server Error'});
+module.exports.createBill = async (req, res) => {
+    try {
+      const { clientId } = req.params;
+      const { items } = req.body; 
+  
+      if (!Array.isArray(items)) {
+        return res.status(400).json({ message: 'Invalid items' });
+      }
+  
+      const client = await Client.findById(clientId);
+  
+      const totalItemsPrice = items.reduce((acc, item) => acc + item.itemQuantity * item.itemPrice, 0);
+      const newBill = new Bill({
+        items: items.map((item) => ({
+          itemDescription: item.itemDescription,
+          itemQuantity: item.itemQuantity,
+          itemPrice: item.itemPrice
+        })),
+        totalPrice: totalItemsPrice,
+        client: client._id
+      });
+  
+      client.bills.push(newBill);
+      await Promise.all([newBill.save(), client.save()]);
+      res.status(201).json(newBill);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
     }
-}
+  };
+  
 
 module.exports.getBills= async(req,res) =>{
     try{
@@ -143,6 +154,11 @@ module.exports.deleteProduct=async(req,res) =>{
 }
 
 module.exports.getProducts=async(req,res) => {
+    try{
+
     const products=await Product.find();
     res.json(products);
+    }catch(err){
+        console.error(err);
+    }
 }

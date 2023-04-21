@@ -1,20 +1,16 @@
 const mongoose = require('mongoose');
 
+itemSchema= new mongoose.Schema({
+  itemDescription:String,
+  itemQuantity:Number,
+  itemPrice:Number
+});
+
+
 const billSchema = new mongoose.Schema({
-    itemDescription:{
-        type:String,
-        required:true,
-    },
-  itemQuantity: {
-    type: String,
-    required: true,
-  },
-  itemPrice:{
-    type: String,
-    required:true,
-  },
+    items:[itemSchema],
   totalPrice:{
-    type: mongoose.Schema.Types.Decimal128,
+    type: Number,
     required:true,
   },
   

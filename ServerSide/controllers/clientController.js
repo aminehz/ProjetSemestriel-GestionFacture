@@ -20,28 +20,29 @@ module.exports.getClients=async(req,res)=>{
     res.json(supplier.clients);
 };
 
+
+
 module.exports.updateClient = async (req, res) => {
   const { supplierId, clientId } = req.params;
   const { email, password } = req.body;
 
   try {
-    const supplier = await Supplier.findById(supplierId).populate('clients').lean();
+    const supplier = await Supplier.findById(supplierId).populate('clients');
     
     if (!supplier) {
       return res.status(404).json({ error: 'Supplier not found' });
     }
     
-    const clientIndex = supplier.clients.findIndex(c => c._id.toString() === clientId);
+    const client = supplier.clients.find(c => c._id.toString() === clientId);
     
-    if (clientIndex === -1) {
+    if (!client) {
       return res.status(404).json({ error: 'Client not found' });
     }
     
-    const client = supplier.clients[clientIndex];
     client.email = email;
     client.password = password;
     
-    await Supplier.findByIdAndUpdate(supplierId, supplier);
+    await supplier.save();
     
     res.json(client);
   } catch (error) {
@@ -49,6 +50,7 @@ module.exports.updateClient = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 
 module.exports.deleteClient=async(req,res)=>{

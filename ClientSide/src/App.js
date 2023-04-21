@@ -1,25 +1,27 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Header from "./components/layouts/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "./components/layouts/Footer";
-import Home from "./components/Home";
 import Stock from "./components/Stock";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import SignIn from "./components/SignIn/SignIn";
+import Facture from "./components/Facture";
+import Layout from "./components/layouts/Layout";
+import Client from "./components/Clients";
 function App() {
   return (
     <Router>
+      <Layout>
       <div className="App">
-        
-        <Routes>
-           <Route path="/" element={<><Header/><Home/></>} />
-           <Route path="/stock" element={<><Header/><Stock/></>} />
-        </Routes>
+        <Routes>  
+          <Route path="/Stock" element={<Stock/>} />
+           <Route path="/Facture" element={<Facture/>} />
+           <Route path="/Archive" element={<><Stock/></>} />
+           <Route path="/Clients" element={<Client/>} />
+           <Route path="/DemandeFacture" element={<><Stock/></>} />
+           <Route path="/" element={<SignIn/>}/>
 
-       
-        <Footer />
+        </Routes>
       </div>
+      </Layout>
     </Router>
   );
 }
