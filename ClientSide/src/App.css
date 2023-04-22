@@ -85,3 +85,12 @@
   width: 60px;
   height: 20px;
 }
+.factureBody{
+  margin-left: 40%;
+  padding: 3%;
+}
+.selectItem{
+  border-radius: 3% !important;
+  
+
+}
