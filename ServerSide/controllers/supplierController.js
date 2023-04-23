@@ -78,12 +78,17 @@ module.exports.getBills= async(req,res) =>{
             return res.status(404).json({message:"Client not found"});
         }
         const bills=client.bills.map(bill =>{
+            const items=bill.items.map(item=>{
+                return{
+                    itemDescription: item.itemDescription,
+                     itemQuantity: item.itemQuantity,
+                     itemPrice: item.itemPrice
+                }
+            });
             return{
                 billId:bill._id,
                 email:client.email,
-                itemDescription:bill.itemDescription,
-                itemQuantity:bill.itemQuantity,
-                itemPrice:bill.itemPrice,
+                items:items,
                 totalPrice:bill.totalPrice,
                 clientId:client._id
             };

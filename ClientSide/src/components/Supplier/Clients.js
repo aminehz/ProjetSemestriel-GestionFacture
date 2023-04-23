@@ -115,7 +115,15 @@ const Client = () =>{
                             <p class="text-xs font-weight-bold mb-0">{client.password}</p>
                           </td>
                           <td class="align-middle text-center text-sm">
-                            <p>{client.bills}</p>
+                            <button className='bg-dark text-white'>
+                            <select className='bg-transparent bg-dark text-white' style={{border:"none"}}>
+                              <option className='bg-dark text-white'>choisir facture</option>
+                              {client.bills.map((billId)=>(
+                                <option className='bg-dark text-white' key={billId} value={billId}>{billId}</option>
+                              ))}
+                            </select>
+                            </button>
+                            
                           </td>
                           <td class="align-middle d-flex justify-content-center align-item-center">
                           <button type="submit" class="btn bg-transparent" onClick={() => {handleShowUpdate();setClientD(client._id);setclientEmail(client.email);setclientFacture(client.bills);setclientPassword(client.password)}}><GrUpdate className='StockIcon'/></button>

@@ -7,11 +7,11 @@ module.exports.login = async (req, res) => {
   
     if (supplier) {
       req.user = { type: 'supplier', id: supplier._id };
-      //res.redirect('/supplier/dashboard');
+     
       return res.json({ message:'supplier has loggedin' });
     } else if (client) {
       req.user = { type: 'client', id: client._id };
-      //res.redirect('/client/dashboard');
+      
       return res.json({ message:'client has loggedin' });
     } else {
       res.status(401).json({ message: 'Invalid email or password' });

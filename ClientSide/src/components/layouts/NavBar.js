@@ -34,14 +34,6 @@ const NavBar = () => {
                 
             </li>
 
-            <li className="nav-item p-3 ">
-
-                <Link to="/Archive">
-                <button type="button" className="btn bg-transparent text-white">
-                <BiArchiveIn className="NavIcon" /> Archive
-                </button>
-                </Link>
-            </li>
 
             <li className="nav-item p-3">
                 <Link to="/Clients">
