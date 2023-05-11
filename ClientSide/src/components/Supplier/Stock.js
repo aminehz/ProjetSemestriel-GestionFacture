@@ -5,6 +5,9 @@ import Button from 'react-bootstrap/Button';
 import {IoIosAddCircle} from "react-icons/io";
 import {BsFillTrashFill} from "react-icons/bs";
 import {GrUpdate} from "react-icons/gr";
+import Footer from '../layouts/Footer';
+import NavBar from '../layouts/NavBar';
+
 
 const Stock= () =>{
 const [stock,setStock]=useState([]);
@@ -81,8 +84,13 @@ const updateProduct=(e) => {
 
 return (
     <div className="">
-      <div className='card stockCard'>
-      
+     <div className='container-fluid'>
+       <div className="row">
+       <div className="col-md-2">
+            <NavBar />
+          </div>
+          <div className="col-md-9 mt-5">
+       <div className='card stockCard'>
         <div className='card-header bg-dark text-white stockCard'>
           Product List
         </div>
@@ -95,7 +103,7 @@ return (
                 <th>Product Quantity</th>
                 <th>Product Price</th>
                 <th>Action</th>
-                <th><button type='button' className='btn bg-transparent ' onClick={handleShow}><IoIosAddCircle style={{width:'50px',height:'35px'}}/></button></th>
+                <th><button type='button' className='btn bg-transparent' onClick={handleShow}><IoIosAddCircle style={{width:'50px',height:'35px'}}/></button></th>
               </tr>
             </thead>
             <tbody>
@@ -129,8 +137,10 @@ return (
           </table>
         </div>
       </div>
-
-
+      <Footer/>
+      </div>
+      </div>
+      </div>
 
       <Modal show={showUpdate} onHide={handleCloseUpdate} animation={false}>
         <Modal.Header closeButton>

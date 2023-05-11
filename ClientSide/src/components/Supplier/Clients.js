@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import {IoIosAddCircle} from "react-icons/io";
 import {BsFillTrashFill} from "react-icons/bs";
 import {GrUpdate} from "react-icons/gr";
+import NavBar from '../layouts/NavBar';
 
 const Client = () =>{
   const [client,setclient]=useState([]);
@@ -54,7 +55,7 @@ const Client = () =>{
       .then(()=>{
           window.location.reload();
       })
-      .catch(error =>{
+      .catch(error =>{ 
           if(error.response.status === 500) {
               window.alert('the name should be unique');
           }
@@ -81,6 +82,12 @@ const Client = () =>{
   
   return (
       <div className="">
+        <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-2">
+            <NavBar />
+          </div>
+          <div className="col-md-9 mt-5">
         <div className='card stockCard'>
         
           <div className='card-header bg-dark text-white stockCard'>
@@ -91,7 +98,6 @@ const Client = () =>{
               <thead>
                 <tr>
                   <th>Client Email</th>
-                 
                   <th>Client password</th>
                   <th>Facture</th>
                   <th>Action</th>
@@ -137,6 +143,9 @@ const Client = () =>{
             </table>
           </div>
         </div>
+        </div>
+        </div>
+        </div>
   
   
   
@@ -170,7 +179,7 @@ const Client = () =>{
   
         <Modal show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
-            <Modal.Title>Add Product</Modal.Title>
+            <Modal.Title>Add Client</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <form onSubmit={addClient}>

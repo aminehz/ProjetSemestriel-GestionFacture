@@ -17,16 +17,10 @@ const NavBar = () => {
             <h3>Dashboard</h3>
             </div>
           <ul style={{ listStyle: "none" }} className="d-flex flex-column justify-content-center navList">
-            <li className="nav-item p-3">
-              
-            <Link to="/Stock">
-            <button type="boutton" className="btn bg-transparent text-white " ><MdInventory  className="NavIcon"/> Stock </button>
-            </Link>  
-             
-            </li>
+          
 
             <li className="nav-item p-3">
-                <Link to="/Facture">
+                <Link to="/Client/Facture">
                     <button type="button" className="btn bg-transparent text-white">
                     <RiBillLine className="NavIcon" /> Facture
                     </button>
@@ -35,13 +29,7 @@ const NavBar = () => {
             </li>
 
 
-            <li className="nav-item p-3">
-                <Link to="/Clients">
-                <button type="button" className="btn bg-transparent text-white">
-                <BsPersonAdd className="NavIcon" /> Client
-                </button>
-                </Link>
-            </li>
+           
 
             <li className="nav-item p-3">
              <Link to="/DemandeFacture">

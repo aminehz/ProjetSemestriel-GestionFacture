@@ -134,7 +134,7 @@ module.exports.updateProduct=async(req,res) => {
     const productId=req.params.productId;
     const {productName,productPrice,productQuantity}=req.body;
     try{
-
+ 
     
     const product=await Product.findByIdAndUpdate(
         productId,

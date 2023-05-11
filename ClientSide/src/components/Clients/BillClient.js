@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import NavBar from './ClientLayouts/NavBar';
 
 const BillClient = () => {
   const [billList, setBillList] = useState([]);
+ const {clientId}  = useParams();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/getBills/64431e1cddf6128a9c2648e3')
+    console.log(clientId);
+    axios.get(`http://localhost:3000/getBills/${clientId}`)
       .then(response => {
         setBillList(response.data);
-        console.log(billList);
-
       })
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [clientId]);
+  
 
 
   return (
+    <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-2">
+            <NavBar />
+          </div>
+          <div className="col-md-9 mt-5">
     <div>
       {billList.map((bill) => (
         <div className='card stockCard'>
@@ -85,7 +94,10 @@ const BillClient = () => {
           </div>
         </div>
       ))}
-
+      
+    </div>
+    </div>
+    </div>
     </div>
   );
 

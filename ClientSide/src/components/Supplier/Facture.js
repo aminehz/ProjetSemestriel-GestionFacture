@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {IoIosAddCircle} from "react-icons/io";
+import NavBar from "../layouts/NavBar";
 
 const Facture = () => {
   const [items, setItems] = useState([
@@ -88,6 +89,12 @@ const Facture = () => {
   };
 
   return (
+    <div className="container-fluid">
+      <div className="row">
+      <div className="col-md-2">
+            <NavBar />
+          </div>
+          <div className="col-md-9 mt-5">
     <form onSubmit={handleSubmit} className="card">
       <div className="card-header bg-dark text-white">Facture</div>
       <div className=" factureBody col-md-3">
@@ -165,6 +172,9 @@ const Facture = () => {
         <button type="submit" className="btn bg-dark text-white m-3" >Créer Facture</button>
       </div>
     </form>
+    </div>
+    </div>
+    </div>
   );
 };
 
