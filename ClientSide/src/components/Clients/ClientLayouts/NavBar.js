@@ -7,6 +7,7 @@ import {FaClipboardList} from "react-icons/fa";
 import {BiLogOut} from "react-icons/bi";
 
 const NavBar = () => {
+  
   return (
     <div>
       <div className="card navPosition">
@@ -21,11 +22,11 @@ const NavBar = () => {
           
 
             <li className="nav-item p-3">
-                <Link to="/Client/Facture">
-                    <button type="button" className="btn bg-transparent text-white">
+                
+                    <div className="btn bg-transparent text-white">
                     <RiBillLine className="NavIcon" /> Facture
-                    </button>
-                </Link>
+                    </div>
+                
                 
             </li>
 

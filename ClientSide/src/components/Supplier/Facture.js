@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {IoIosAddCircle} from "react-icons/io";
 import NavBar from "../layouts/NavBar";
+import { Link } from "react-router-dom";
 
 const Facture = () => {
+
   const [items, setItems] = useState([
     { itemDescription: "", itemQuantity: "", itemPrice: 0 },
   ]);
@@ -73,6 +75,7 @@ const Facture = () => {
   };
 
   const handleSubmit = async (event) => {
+
     event.preventDefault();
 
     try {
@@ -81,7 +84,7 @@ const Facture = () => {
         { items, totalPrice }
       );
       console.log(response.data);
-      
+        
       
     } catch (error) {
       console.error(error);
@@ -169,7 +172,7 @@ const Facture = () => {
             onChange={(event) => setTotalPrice(event.target.value)}
           />
         </label>
-        <button type="submit" className="btn bg-dark text-white m-3" >Créer Facture</button>
+      <Link to="/Stock"><button type="submit" className="btn bg-dark text-white m-3" >Créer Facture</button></Link>
       </div>
     </form>
     </div>
