@@ -4,6 +4,7 @@ import {RiBillLine} from "react-icons/ri";
 import {BiArchiveIn} from "react-icons/bi";
 import {BsPersonAdd} from "react-icons/bs";
 import {FaClipboardList} from "react-icons/fa";
+import {BiLogOut} from "react-icons/bi";
 
 const NavBar = () => {
   return (
@@ -37,6 +38,17 @@ const NavBar = () => {
                 <FaClipboardList className="NavIcon" /> Demande
                 </button>
              </Link>
+                
+              
+            </li>
+            <li className="nav-item p-3">
+             <Link to="/">
+             <button type="button" className="btn bg-transparent text-white">
+                <BiLogOut className="NavIcon" /> Logout
+                </button>
+             </Link>
+
+             
                 
               
             </li>
